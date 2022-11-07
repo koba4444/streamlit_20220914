@@ -4,7 +4,7 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 import numpy as np
-
+import os
 import pandas as pd
 import pydeck as pdk
 import streamlit as st
@@ -12,21 +12,16 @@ import streamlit as st
 
 
 def wsb_sentiment():
-    data = pd.read_csv('output.csv')
+    #data = pd.read_csv('./output.csv')
+    print(os.curdir)
 
-    col1, col2, col3 = st.columns([1,3])
+    col1, col2 = st.columns([1,2])
 
     col1.markdown(' # Wallstreetbet subreddit sentiment dynamics')
     col1.markdown("""
                 Know what is sentiment on r/wallstreetbet - subreddit witn 13 mln readers
             """)
-    col1.metric(label="Sent value", val=3, delta=-1)
-
-    chart_data = pd.DataFrame(
-        data,
-        columns=['a', 'b', 'c'])
-
-    st.line_chart(chart_data)
+    col1.metric(label="Sent value", value="3", delta="-1")
 
     df = pd.DataFrame(
         np.random.randn(100, 2) / [0.5, 0.5] + [55.5, 37.33],
